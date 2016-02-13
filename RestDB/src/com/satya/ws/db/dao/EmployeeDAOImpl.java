@@ -1,19 +1,18 @@
 package com.satya.ws.db.dao;
 
-import javax.persistence.EntityManager;
-
 import com.satya.ws.db.entity.Employee;
 import com.satya.ws.db.util.EntityManagerUtil;
 
-public class EmployeeDAOImpl implements EmployeeDAO {
+public class EmployeeDAOImpl  extends EntityManagerUtil implements EmployeeDAO {
 public Employee get(Integer empId){
         
-        EntityManager entityManager = null;
+      //  EntityManager entityManager = null;
         Employee employee=null;
         
         try{
-            entityManager = EntityManagerUtil.getEntityManager();
-            employee = (Employee)entityManager.find(Employee.class, empId);
+            //entityManager = EntityManagerUtil.getEntityManager();
+        	
+            employee = (Employee)em.find(Employee.class, empId);
             
         }catch(Exception e){
             e.printStackTrace();
@@ -24,14 +23,14 @@ public Employee get(Integer empId){
     
     public void insert(Employee employee){
         
-        EntityManager entityManager = null;
+      //  EntityManager entityManager = null;
         
         try {
             
-            entityManager= EntityManagerUtil.getEntityManager();
-            entityManager.getTransaction().begin();
-            entityManager.persist(employee);
-            entityManager.getTransaction().commit();
+            //entityManager= EntityManagerUtil.getEntityManager();
+        	em.getTransaction().begin();
+        	em.persist(employee);
+        	em.getTransaction().commit();
             
         }catch (Exception e){
             e.printStackTrace();
@@ -41,13 +40,13 @@ public Employee get(Integer empId){
     
   public void update(Employee employee){
         
-      EntityManager entityManager = null;
+      //EntityManager entityManager = null;
         
         try {            
-            entityManager= EntityManagerUtil.getEntityManager();
-            entityManager.getTransaction().begin();
-            entityManager.merge(employee);
-            entityManager.getTransaction().commit();
+           // entityManager= EntityManagerUtil.getEntityManager();
+            em.getTransaction().begin();
+            em.merge(employee);
+            em.getTransaction().commit();
             
         }catch (Exception e){
             e.printStackTrace();
@@ -57,16 +56,16 @@ public Employee get(Integer empId){
   
   public void delete(Integer empId){
         
-      EntityManager entityManager = null;
+     // EntityManager entityManager = null;
  
         
         try {
             
-            entityManager= EntityManagerUtil.getEntityManager();
-            entityManager.getTransaction().begin();
-            Employee emp = (Employee)entityManager.find(Employee.class, empId);
-            entityManager.remove(emp);
-            entityManager.getTransaction().commit();
+           // entityManager= EntityManagerUtil.getEntityManager();
+            em.getTransaction().begin();
+            Employee emp = (Employee)em.find(Employee.class, empId);
+            em.remove(emp);
+            em.getTransaction().commit();
             
         }catch (Exception e){
             e.printStackTrace();
