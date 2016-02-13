@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<group>
+    <bpa_id>12</bpa_id>
+    <group_Number>1234</group_Number>
+    <bpa_effect_frm_dt>2016-02-14T01:01:22.612+05:30</bpa_effect_frm_dt>
+    <bpa_effect_to_dt>2016-02-14T01:01:22.612+05:30</bpa_effect_to_dt>
+    <billaccountList>
+        <blla_id>123</blla_id>
+        <bpa_id>22</bpa_id>
+        <blla_effct_frm_dt>2016-02-14T01:01:22.612+05:30</blla_effct_frm_dt>
+        <blla_effct_to_dt>2016-02-14T01:01:22.612+05:30</blla_effct_to_dt>
+    </billaccountList>
+</group>
