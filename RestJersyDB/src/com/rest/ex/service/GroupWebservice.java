@@ -10,6 +10,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -27,15 +28,17 @@ import com.rest.ex.model.IGroupService;
 public class GroupWebservice {
 
 	@GET
-	@Path("/get")
-	@Produces("application/xml")
-	public Response getTrackInJSON() {
+	@Path("/getAllGroups")
+	@Produces("application/json")
+	public Response getAllGroups() {
 		
 		//dao.insertData();
 		IGroupService grService=new GroupServiceImpl();
 		
-	Group grp=	grService.retrieveData(123);
-		//Group grp =getGroup();
+	List<Group>  grps=	grService.retrieveAll();
+
+	for(Group grp:grps){
+	//Group grp =grps.
 	GroupJaxb gr =new GroupJaxb();
 	gr.setBpa_id(grp.getBpa_id());
 	gr.setGroup_Number(grp.getGroup_Number());
@@ -67,7 +70,55 @@ public class GroupWebservice {
 	gr.setBillaccountList(billJaxbList);
 	
 	
+	}
 	
+	
+	return Response.status(200).entity(grps).build();
+	}
+	
+	@GET
+	@Path("/getGroup/{id}")
+	@Produces("application/json")
+	public Response getGroup(@PathParam("id") int id) {
+		
+		//dao.insertData();
+		IGroupService grService=new GroupServiceImpl();
+		
+		Group grp=	grService.retrieveData(id);
+
+	
+	//Group grp =grps.
+	GroupJaxb gr =new GroupJaxb();
+	gr.setBpa_id(grp.getBpa_id());
+	gr.setGroup_Number(grp.getGroup_Number());
+	gr.setBpa_effect_frm_dt(gr.getBpa_effect_frm_dt());
+	gr.setBpa_effect_to_dt(gr.getBpa_effect_to_dt());
+	
+	
+	List<BillAccountJaxb>billJaxbList=new ArrayList<>();
+	
+	for(BillAccount blla:grp.getBillaccountList()){
+		BillAccountJaxb billJaxb=new BillAccountJaxb();
+		billJaxb.setBlla_id(blla.getBlla_id());
+		billJaxb.setName(blla.getName());
+		billJaxb.setBlla_effct_frm_dt(blla.getBlla_effct_frm_dt());
+		billJaxb.setBlla_effct_to_dt(blla.getBlla_effct_to_dt());
+		List<BillHistoryJaxb> bhiJaxbList=new ArrayList<>();
+		
+		for(BillHistory bhi:blla.getBillHistoryList()){
+			BillHistoryJaxb bhiJaxb=new BillHistoryJaxb();
+			bhiJaxb.setBhi_id(bhi.getBhi_id());
+			bhiJaxb.setBlla_id(bhi.getBlla_id());
+			bhiJaxb.setBhi_effct_frm_dt(bhi.getBhi_effct_frm_dt());
+			bhiJaxb.setBhi_effct_to_dt(bhi.getBhi_effct_to_dt());
+			bhiJaxbList.add(bhiJaxb);
+		}
+		billJaxb.setBillHistoryList(bhiJaxbList);
+		billJaxbList.add(billJaxb);
+	}
+	gr.setBillaccountList(billJaxbList);
+	
+
 	
 	
 	return Response.status(200).entity(gr).build();

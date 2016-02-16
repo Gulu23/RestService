@@ -4,14 +4,16 @@ package com.rest.ex.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
-
+import javax.persistence.Table;
+@Table(name="BHI")
 @Entity
 public class BillHistory {
 	
 	@Id
 	private int bhi_id;
-	
+
 	private int blla_id;
 	
 	private Date bhi_effct_frm_dt;

@@ -4,6 +4,8 @@ import com.satya.ws.db.entity.Employee;
 import com.satya.ws.db.util.EntityManagerUtil;
 
 public class EmployeeDAOImpl  extends EntityManagerUtil implements EmployeeDAO {
+	
+	
 public Employee get(Integer empId){
         
       //  EntityManager entityManager = null;

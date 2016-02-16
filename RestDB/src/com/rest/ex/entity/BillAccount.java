@@ -1,22 +1,34 @@
 package com.rest.ex.entity;
 
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="BILLACCOUNT_INFO")
+public class BillAccount implements Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-public class BillAccount {
-    @Id
-    @Column(name="Blla_ID")
-    private int blla_id;
+	@Id
     
-    private int bpa_id;
+    private int blla_id;
+	
+    
+   private int bpa_id;
     
     private String name;
     
@@ -24,7 +36,8 @@ public class BillAccount {
     
     private Date blla_effct_to_dt;
     
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    //@JoinTable(name="Blla_HAS_Bhi", joinColumns={@JoinColumn(name="BILLACCOUNT_INFO_blla_id", referencedColumnName="blla_id")}, inverseJoinColumns={@JoinColumn(name="BHI_bhi_id", referencedColumnName="bhi_id")})
     private List<BillHistory> billHistoryList;
     
     public String getName() {
@@ -67,7 +80,8 @@ public class BillAccount {
 		this.blla_effct_to_dt = blla_effct_to_dt;
 	}
 
-	public List<BillHistory> getBillHistoryList() {
+public List<BillHistory> getBillHistoryList() {
+	
 		return billHistoryList;
 	}
 

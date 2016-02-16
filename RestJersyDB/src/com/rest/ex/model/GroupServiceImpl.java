@@ -45,6 +45,12 @@ public class GroupServiceImpl  implements IGroupService{
 		dos.deleteData();
 		
 	}
+
+	@Override
+	public List<Group> retrieveAll() {
+		List<Group> result=dos.retrieveAll();
+		return result;
+	}
 	
 	
 	
