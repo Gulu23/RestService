@@ -150,8 +150,8 @@ public class DataOperationsServiceImpl extends EntityManagerUtil implements Data
 		
 		 Group grp = new Group();
  		 grp.setBpa_id(123);
- 	        grp.setBpa_effect_frm_dt("01-Jan-2015");
- 	        grp.setBpa_effect_to_dt("31-Dec-2015");
+ 	        grp.setBpa_effect_frm_dt(new Date("01-Jan-2015"));
+ 	        grp.setBpa_effect_to_dt(new Date("31-Dec-2015"));
  	        grp.setGroup_Number(1719L);
  	        List billaccountList = new ArrayList<>();
  	        BillAccount blla1 = new BillAccount();
@@ -198,8 +198,8 @@ public class DataOperationsServiceImpl extends EntityManagerUtil implements Data
  	      
  	     Group grp1 = new Group();
 		 grp1.setBpa_id(230);
-	        grp1.setBpa_effect_frm_dt("01-Jan-2015");
-	        grp1.setBpa_effect_to_dt("31-Dec-2015");
+	        grp1.setBpa_effect_frm_dt(new Date("01-Jan-2015"));
+	        grp1.setBpa_effect_to_dt(new Date("31-Dec-2015"));
 	        grp1.setGroup_Number(1720L);
 	        
 	        BillAccount blla3 = new BillAccount();

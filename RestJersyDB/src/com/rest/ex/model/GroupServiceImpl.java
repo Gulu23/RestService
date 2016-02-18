@@ -69,8 +69,8 @@ public class GroupServiceImpl  implements IGroupService{
 		Group gr =new Group();
 		gr.setBpa_id(grxb.getBpa_id());
 		gr.setGroup_Number(grxb.getGroup_Number());
-		gr.setBpa_effect_frm_dt(convertDatetoString(grxb.getBpa_effect_frm_dt()));
-		gr.setBpa_effect_to_dt(convertDatetoString(grxb.getBpa_effect_to_dt()));
+		gr.setBpa_effect_frm_dt(grxb.getBpa_effect_frm_dt());
+		gr.setBpa_effect_to_dt(grxb.getBpa_effect_to_dt());
 		
 		
 		List<BillAccount>billaList=new ArrayList<>();
